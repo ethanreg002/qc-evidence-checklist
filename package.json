@@ -1,0 +1,15 @@
+{
+  "name": "qc-evidence-checklist",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Dependency-free validation for traceable QC evidence notes.",
+  "scripts": {
+    "validate:example": "node tools/validate-csv.mjs examples/sample-evidence.csv",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
