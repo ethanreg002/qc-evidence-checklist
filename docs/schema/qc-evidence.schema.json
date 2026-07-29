@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ethanreg002.github.io/qc-evidence-checklist/schema/qc-evidence.schema.json",
+  "title": "QC evidence record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "source_url",
+    "selection_text",
+    "observation",
+    "unresolved_question",
+    "reviewed_on",
+    "state"
+  ],
+  "properties": {
+    "record_id": { "type": "string", "minLength": 1 },
+    "source_url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+    "selection_text": { "type": "string", "minLength": 1 },
+    "observation": { "type": "string", "minLength": 1 },
+    "unresolved_question": { "type": "string" },
+    "reviewed_on": { "type": "string", "format": "date" },
+    "state": { "enum": ["observed", "unresolved", "recheck"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "unresolved" } } },
+      "then": { "properties": { "unresolved_question": { "minLength": 1 } } }
+    }
+  ]
+}
