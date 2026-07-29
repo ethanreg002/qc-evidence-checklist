@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QC Evidence Checklist | Kakobuy Spreadsheet Research Notes</title>
+  <meta name="description" content="A dependency-free validator for QC evidence notes: source URLs, exact selections, neutral observations, unresolved questions, states, and review dates.">
+  <link rel="canonical" href="https://ethanreg002.github.io/qc-evidence-checklist/">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="kakobuy-logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="shell" aria-label="Primary">
+      <a class="brand" href="./">
+        <img src="kakobuy-logo.png" alt="Kakobuy logo used as a contextual source marker" width="42" height="42">
+        <span><strong>QC Evidence Checklist</strong><small>Open-source note validator</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/ethanreg002/qc-evidence-checklist">Source</a>
+        <a href="schema/qc-evidence.schema.json">Schema</a>
+        <a href="sample-evidence.csv">Example CSV</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro-band">
+      <div class="shell intro-grid">
+        <div>
+          <p class="eyebrow">Open-source evidence contract</p>
+          <h1>QC Evidence Checklist</h1>
+          <p class="lead">Validate spreadsheet research notes before they are treated as usable evidence. The tool checks sources, exact selections, observations, open questions, states, and review dates.</p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/ethanreg002/qc-evidence-checklist">View repository</a>
+            <a class="button secondary" href="sample-evidence.csv">Open example CSV</a>
+          </div>
+        </div>
+        <dl class="facts" aria-label="Project facts">
+          <div><dt>7</dt><dd>documented fields</dd></div>
+          <div><dt>3</dt><dd>evidence states</dd></div>
+          <div><dt>0</dt><dd>runtime dependencies</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="checks">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Automated pass</p>
+          <h2 id="checks">What the validator enforces</h2>
+          <p>Structural checks catch contradictions in the note format. They do not turn an image or spreadsheet row into a quality result.</p>
+        </div>
+        <div class="check-grid">
+          <article><span>01</span><h3>Traceable identity</h3><p>Require a stable record ID, final HTTP(S) source, and exact visible selection text.</p></article>
+          <article><span>02</span><h3>Evidence boundary</h3><p>Keep a neutral observation separate from the question that still needs an answer.</p></article>
+          <article><span>03</span><h3>Review state</h3><p>Limit rows to observed, unresolved, or recheck and flag dates that are future or stale.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band muted-band" aria-labelledby="run">
+      <div class="shell run-grid">
+        <div>
+          <p class="eyebrow">Local workflow</p>
+          <h2 id="run">Run the checklist before manual review</h2>
+          <ol>
+            <li>Export a CSV with the documented seven columns.</li>
+            <li>Run tests and validate the file locally.</li>
+            <li>Fix structural errors and inspect warnings.</li>
+            <li>Open each source and complete the manual review checklist.</li>
+          </ol>
+        </div>
+        <pre aria-label="Terminal commands"><code>npm test
+npm run validate:example
+node tools/validate-csv.mjs your-notes.csv</code></pre>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="contract">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">CSV contract</p>
+          <h2 id="contract">One row, one reviewable evidence record</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Requirement</th><th>Why it exists</th></tr></thead>
+            <tbody>
+              <tr><td><code>record_id</code></td><td>Unique and non-empty</td><td>Prevents one note from silently replacing another.</td></tr>
+              <tr><td><code>source_url</code></td><td>Final HTTP(S) page</td><td>Keeps the evidence reopenable.</td></tr>
+              <tr><td><code>selection_text</code></td><td>Exact visible label</td><td>Reduces size, color, version, or package mix-ups.</td></tr>
+              <tr><td><code>observation</code></td><td>Neutral visible detail</td><td>Separates what the page shows from a broader conclusion.</td></tr>
+              <tr><td><code>unresolved_question</code></td><td>Required for unresolved rows</td><td>Turns uncertainty into a specific next check.</td></tr>
+              <tr><td><code>reviewed_on</code></td><td>ISO date</td><td>Distinguishes an old note from current evidence.</td></tr>
+              <tr><td><code>state</code></td><td>Observed, unresolved, or recheck</td><td>Makes the next action explicit.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <aside class="limits-band" aria-labelledby="limits">
+      <div class="shell">
+        <p class="eyebrow">Important limits</p>
+        <h2 id="limits">Validation is not inspection</h2>
+        <p>The checklist does not authenticate products, score quality, verify sellers, confirm warehouse handling, or predict price, stock, shipping, or order outcomes. Those facts require current evidence from their responsible sources.</p>
+      </div>
+    </aside>
+
+    <section class="band source-band" aria-labelledby="source-example">
+      <div class="shell source-grid">
+        <div>
+          <p class="eyebrow">Contextual source example</p>
+          <h2 id="source-example">Use a current page, not a remembered row</h2>
+          <p>Open the Kakobuy Spreadsheet resource, follow the current destination, and record only the selection and evidence that the live page visibly supports.</p>
+        </div>
+        <a class="button primary" href="https://kakobs.com" rel="nofollow sponsored">Open Kakobuy Spreadsheet resource</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <p>Dependency-free QC evidence structure checks.</p>
+      <a href="review-checklist.md">Manual review checklist</a>
+    </div>
+  </footer>
+</body>
+</html>

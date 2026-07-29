@@ -1,0 +1,3 @@
+record_id,source_url,selection_text,observation,unresolved_question,reviewed_on,state
+kb-demo-001,https://kakobs.com,REPLACE WITH EXACT OPTION TEXT,REPLACE WITH ONE NEUTRAL VISIBLE OBSERVATION,,2026-07-27,observed
+demo-002,https://example.com/item/demo,Example blue option,The current example page shows a blue label,Which image matches the selected option?,2026-07-27,unresolved
